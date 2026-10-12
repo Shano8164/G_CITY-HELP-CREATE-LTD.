@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G_CITY HELP CENTRE LTD</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0b10;
+            --card-bg: #121520;
+            --input-bg: #1a1e2e;
+            --primary-cyan: #00f0ff;
+            --accent-purple: #9d4edd;
+            --accent-neon: #7000ff;
+            --text-light: #e2e8f0;
+            --text-gray: #94a3b8;
+            --nagad-color: #f7921e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(157, 78, 221, 0.05) 0%, transparent 40%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Header Styling */
+        header {
+            background: rgba(18, 21, 32, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .header-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Product Cards */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-cyan);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary-cyan);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--primary-cyan);
+            font-weight: 600;
+        }
+
+        .product-icon {
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-cyan);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .advance-price {
+            font-size: 0.9rem;
+            color: var(--nagad-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-neon));
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .buy-btn:hover {
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.6);
+            opacity: 0.95;
+        }
+
+        /* Order Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 16px;
+            max-width: 550px;
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--text-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-cyan);
+        }
+
+        /* Payment Instructions Box */
+        .payment-box {
+            background: rgba(247, 146, 30, 0.08);
+            border: 1px solid var(--nagad-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payment-box h4 {
+            color: var(--nagad-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .payment-box p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .nagad-number {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            color: #fff;
+            background: var(--nagad-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--input-bg);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .submit-whatsapp-btn {
+            background: #25D366;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .submit-whatsapp-btn:hover {
+            background: #1eb956;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #06070a;
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-top: 40px;
+        }
+
+        footer strong {
+            color: var(--primary-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-title">
+            <i class="fa-solid fa-shield-halved"></i> G_CITY HELP CENTRE LTD
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <div class="section-title">
+            <i class="fa-solid fa-id-card"></i> আমাদের সার্ভিস সমূহ (Our Services)
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div>
+                    <span class="product-badge">PVC Card</span>
+                    <div class="product-icon"><i class="fa-solid fa-address-card"></i></div>
+                    <div class="product-name">PVC CARD DRIVING LICENCES</div>
+                    <div class="product-price">2500 Tk</div>
+                    <div class="advance-price"><i class="fa-solid fa-bolt"></i> ৫০% এডভান্স: ১২৫০ Tk</div>
+                </div>
+                <button class="buy-btn" onclick="openOrderModal('PVC CARD DRIVING LICENCES', 2500, 1250)">
+                    <i class="fa-solid fa-cart-shopping"></i> অর্ডার করুন
+                </button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div>
+                    <span class="product-badge">Online Service</span>
+                    <div class="product-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="product-name">PVC CARD ONLINE DRIVING LICENCES</div>
+                    <div class="product-price">4000 Tk</div>
+                    <div class="advance-price"><i class="fa-solid fa-bolt"></i> ৫০% এডভান্স: ২০০০ Tk</div>
+                </div>
+                <button class="buy-btn" onclick="openOrderModal('PVC CARD ONLINE DRIVING LICENCES', 4000, 2000)">
+                    <i class="fa-solid fa-cart-shopping"></i> অর্ডার করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Modal Form -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <i class="fa-solid fa-xmark close-btn" onclick="closeOrderModal()"></i>
+            
+            <h3 style="color: var(--primary-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.2rem;">
+                <i class="fa-solid fa-file-invoice"></i> অর্ডার কনফার্মেশন Form
+            </h3>
+
+            <!-- Payment Instructions -->
+            <div class="payment-box">
+                <h4><i class="fa-solid fa-mobile-screen-button"></i> ৫০% নগদে Send Money পেমেন্ট নির্দেশিকা:</h4>
+                <p>
+                    অর্ডারটি কনফার্ম করতে ৫০% অগ্রিম মূল্য পাঠাতে হবে।<br>
+                    নগদ Send Money নম্বর: <span class="nagad-number">01817846928</span><br>
+                    এডভান্স পরিমাণ: <strong id="advanceAmountDisplay" style="color: #fff;">0</strong> Tk<br>
+                    টাকা পাঠানোর পর নিচের ঘরে <strong>Payment TxID</strong> প্রদান করুন।
+                </p>
+            </div>
+
+            <form id="checkoutForm" onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label>নির্বাচিত সার্ভিস:</label>
+                    <input type="text" id="selectedProduct" class="form-control" readonly style="color: var(--primary-cyan); font-weight: bold;">
+                </div>
+
+                <div class="form-group">
+                    <label>আপনার নাম (Customer Name) *</label>
+                    <input type="text" id="custName" class="form-control" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+                </div>
+
+                <div class="form-group">
+                    <label>ফোন নম্বর (Phone Number) *</label>
+                    <input type="tel" id="custPhone" class="form-control" placeholder="01XXXXXXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label>জিপ কোড (Zip Code)</label>
+                    <input type="text" id="custZip" class="form-control" placeholder="যেমন: 1704">
+                </div>
+
+                <div class="form-group">
+                    <label>সম্পূর্ণ ঠিকানা (Full Address) *</label>
+                    <textarea id="custAddress" class="form-control" placeholder="গ্রাম/রাস্তা, ডাকঘর, থানা, জেলা" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>নগদ পেমেন্ট TxID (Payment TxID) *</label>
+                    <input type="text" id="custTxid" class="form-control" placeholder="যেমন: 9A8B7C6D" required>
+                </div>
+
+                <button type="submit" class="submit-whatsapp-btn">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> WhatsApp-এ অর্ডার পাঠান
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container" style="margin:0 auto;">
+            copyright 2026 <strong>G_CITY BLACK HAT HACKER ADMIN (SHANTO_BRO)</strong>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let currentProductName = '';
+        let currentProductPrice = 0;
+        let currentAdvancePrice = 0;
+
+        function openOrderModal(productName, price, advance) {
+            currentProductName = productName;
+            currentProductPrice = price;
+            currentAdvancePrice = advance;
+
+            document.getElementById('selectedProduct').value = productName + ' - ' + price + ' Tk';
+            document.getElementById('advanceAmountDisplay').innerText = advance;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target === modal) {
+                closeOrderModal();
+            }
+        }
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const whatsappNumber = "8801770168164"; // Receiver WhatsApp Number
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const zip = document.getElementById('custZip').value.trim() || 'N/A';
+            const address = document.getElementById('custAddress').value.trim();
+            const txid = document.getElementById('custTxid').value.trim();
+
+            // Constructing WhatsApp Text Message
+            const message = 
+                `*NEW ORDER - G_CITY HELP CENTRE LTD*\n` +
+                `----------------------------------------\n` +
+                `📌 *Product:* ${currentProductName}\n` +
+                `💰 *Total Price:* ${currentProductPrice} Tk\n` +
+                `⚡ *50% Advance Paid:* ${currentAdvancePrice} Tk\n` +
+                `----------------------------------------\n` +
+                `👤 *Customer Name:* ${name}\n` +
+                `📞 *Phone:* ${phone}\n` +
+                `📮 *Zip Code:* ${zip}\n` +
+                `🏠 *Full Address:* ${address}\n` +
+                `----------------------------------------\n` +
+                `💳 *Nagad Payment TxID:* ${txid}\n` +
+                `----------------------------------------\n` +
+                `_Order generated via G_CITY Web Portal_`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
